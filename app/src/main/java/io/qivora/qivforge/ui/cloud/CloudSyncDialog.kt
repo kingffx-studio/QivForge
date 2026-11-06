@@ -17,7 +17,7 @@ fun CloudSyncDialog(
     onDismiss: () -> Unit,
     onConfirmSync: (commitMessage: String) -> Unit
 ) {
-    val theme = ThemeManager.currentTheme
+    val theme = ThemeManager.currentTheme.value
     var message by remember { mutableStateOf("QivForge project sync") }
 
     AlertDialog(
