@@ -3,8 +3,6 @@ name: Build and Release QivForge APK
 on:
   push:
     branches: [main]
-    paths-ignore:
-      - "**.md"
   workflow_dispatch:
 
 permissions:
@@ -22,24 +20,18 @@ jobs:
     steps:
       - name: Checkout source
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: "17"
           cache: gradle
-
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
-
       - name: Install Android SDK, NDK and CMake
         run: |
           sdkmanager --install "platform-tools" "platforms;android-34" "build-tools;34.0.0" "ndk;26.1.10909125" "cmake;3.22.1"
           yes | sdkmanager --licenses
-
       - name: Validate Android project inputs
         run: |
           test -f settings.gradle.kts
@@ -49,19 +41,15 @@ jobs:
           test -f engine/CMakeLists.txt
           test -f app/src/main/java/io/qivora/qivforge/MainActivity.kt
           test -f app/src/main/res/values/strings.xml
-          test -x ./gradlew || chmod +x ./gradlew
-          echo "Android project structure validated."
-
+          chmod +x ./gradlew
       - name: Build release APK
         run: ./gradlew --no-daemon --stacktrace clean :app:assembleRelease
-
       - name: Verify APK output
         run: |
           APK="app/build/outputs/apk/release/app-release.apk"
           test -s "$APK"
           file "$APK"
           sha256sum "$APK"
-
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
