@@ -30,7 +30,7 @@ fun AnimGraphEditorScreen(
     graphName: String = "HumanoidDefault.qanim",
     onNavigateBack: () -> Unit
 ) {
-    val theme = ThemeManager.currentTheme
+    val theme = ThemeManager.currentTheme.value
 
     val states = remember {
         listOf(
