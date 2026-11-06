@@ -49,7 +49,9 @@ jobs:
 
       - name: Verify APK output
         run: |
-          APK="app/build/outputs/apk/release/app-release.apk"
+          find app/build/outputs/apk -type f -name '*.apk' -print
+          APK="$(find app/build/outputs/apk -type f -name '*.apk' -print -quit)"
+          test -n "$APK"
           test -s "$APK"
           file "$APK"
           sha256sum "$APK"
@@ -58,6 +60,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: QivForge-release-arm64
-          path: app/build/outputs/apk/release/app-release.apk
+          path: app/build/outputs/apk/**/*.apk
           if-no-files-found: error
           retention-days: 30
