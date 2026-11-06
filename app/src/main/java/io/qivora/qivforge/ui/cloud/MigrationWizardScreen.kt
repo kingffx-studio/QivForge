@@ -21,7 +21,7 @@ fun MigrationWizardScreen(
     projectName: String,
     onNavigateBack: () -> Unit
 ) {
-    val theme = ThemeManager.currentTheme
+    val theme = ThemeManager.currentTheme.value
     var repoSlug by remember { mutableStateOf("qf-${projectName.lowercase().replace(" ", "-")}") }
     var isPrivate by remember { mutableStateOf(true) }
     var isMigrating by remember { mutableStateOf(false) }
