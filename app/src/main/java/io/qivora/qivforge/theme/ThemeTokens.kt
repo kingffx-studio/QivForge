@@ -43,7 +43,23 @@ data class ThemeTokens(
     val codeNumber: Color,
     val codeComment: Color,
     val codeError: Color
-) {
+ ) {
+    // Backward-compatible aliases used by existing UI screens.
+    val primaryColor: Color get() = primary
+    val onPrimaryColor: Color get() = onPrimary
+    val surfaceColor: Color get() = surface
+    val surfaceVariant: Color get() = panelAlt
+    val backgroundColor: Color get() = panel
+    val background: Color get() = panel
+    val textColor: Color get() = onSurface
+    val secondaryTextColor: Color get() = onSurfaceMuted
+    val onSurfaceColor: Color get() = onSurface
+    val onBackgroundColor: Color get() = onSurface
+    val border: Color get() = outline
+    val borderColor: Color get() = outline
+    val dividerColor: Color get() = outline
+    val errorColor: Color get() = error
+
     fun toJson(): String {
         val obj = JSONObject()
         obj.put("name", name)
