@@ -487,13 +487,13 @@ fun CodeEditorScreen(
             onDismissRequest = { showAiSheet = false },
             containerColor = theme.surface
         ) {
-            val tokens = ThemeTokens(
-                surfaceColor = theme.surface,
-                backgroundColor = theme.panel,
-                textColor = theme.onSurface,
-                secondaryTextColor = theme.onSurfaceMuted,
-                primaryColor = theme.primary,
-                dividerColor = theme.border
+            val tokens = theme.copy(
+                surface = theme.surface,
+                panel = theme.panel,
+                onSurface = theme.onSurface,
+                onSurfaceMuted = theme.onSurfaceMuted,
+                primary = theme.primary,
+                outline = theme.outline
             )
             AiAssistantSheet(
                 theme = tokens,
