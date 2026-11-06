@@ -31,7 +31,7 @@ import java.util.Arrays
 fun VaultScreen(
     onNavigateBack: () -> Unit
 ) {
-    val theme = ThemeManager.currentTheme
+    val theme = ThemeManager.currentTheme.value
     val scope = rememberCoroutineScope()
 
     var tokenInput by remember { mutableStateOf("") }
