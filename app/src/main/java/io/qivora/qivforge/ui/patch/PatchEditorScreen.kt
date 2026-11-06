@@ -38,7 +38,7 @@ fun PatchEditorScreen(
     patchName: String = "FireWeapon.qpatch",
     onNavigateBack: () -> Unit
 ) {
-    val theme = ThemeManager.currentTheme
+    val theme = ThemeManager.currentTheme.value
 
     val nodes = remember {
         mutableStateListOf(
@@ -125,13 +125,13 @@ fun PatchEditorScreen(
                         .width(180.dp)
                         .border(1.dp, theme.borderColor, RoundedCornerShape(8.dp))
                         .pointerInput(node.id) {
-                            detectDragGestures { change, dragAmount ->
+                            detectDragGestures(onDrag = { change, dragAmount ->
                                 change.consume()
                                 offsetX += dragAmount.x
                                 offsetY += dragAmount.y
                                 node.x = offsetX
                                 node.y = offsetY
-                            }
+                            })
                         }
                 ) {
                     Column {
