@@ -8,7 +8,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "io.qivora.qivforge"
+        applicationId = "com.qivforge"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
