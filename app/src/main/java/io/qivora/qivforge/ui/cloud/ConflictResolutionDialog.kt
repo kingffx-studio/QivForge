@@ -27,7 +27,7 @@ fun ConflictResolutionDialog(
     onResolveBinary: (path: String, action: String) -> Unit,
     onResolveScript: (path: String) -> Unit
 ) {
-    val theme = ThemeManager.currentTheme
+    val theme = ThemeManager.currentTheme.value
 
     AlertDialog(
         onDismissRequest = onDismiss,
